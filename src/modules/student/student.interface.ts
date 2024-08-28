@@ -1,6 +1,8 @@
 // import { Schema, model, connect } from 'mongoose';
 
-export type Guardian = {
+import { Model } from "mongoose"
+
+export type TGuardian = {
   father?: {
     name: string
     contactNumber: string
@@ -18,22 +20,22 @@ export type Guardian = {
   }
 }
 
-export type UserName = {
+export type TUserName = {
   firstName: string
   lastName: string
   middleName?: string
 }
 
-export type LocalGuardian = {
+export type TLocalGuardian = {
   name: string
   contactNumber: string
   occupation: string
 }
 
-export type Student = {
+export type TStudent = {
   id?: string
   name: {
-    type: UserName
+    type: TUserName
     required: true
   }
   gender: 'male' | 'female' | 'other';
@@ -48,15 +50,20 @@ export type Student = {
     current: string
   }
   guardian: {
-    type: Guardian
+    type: TGuardian
     required: true
   }
   localGuardian: {
-    type: LocalGuardian
+    type: TLocalGuardian
     required: true
   }
   isActive: 'active'| 'inactive'
   
 }
 
-// create a schema
+// create a schema for custom instance method 
+export type StudentMethods = {
+  isUserExists(id: string): Promise<TStudent | null>
+}
+
+export type StudentModel = Model<TStudent, Record<string, never>, StudentMethods>
