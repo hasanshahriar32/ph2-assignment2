@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 // zod data validation
+// checking
 
 
     const userNameSchema = z.object({
@@ -16,23 +17,23 @@ import { z } from 'zod'
       type: z.object({
         father: z
           .object({
-            name: z.string().nonempty(),
-            contactNumber: z.string().nonempty(),
-            occupation: z.string().nonempty(),
+            name: z.string(),
+            contactNumber: z.string(),
+            occupation: z.string(),
           })
           .optional(),
         mother: z
           .object({
-            name: z.string().nonempty(),
-            contactNumber: z.string().nonempty(),
-            occupation: z.string().nonempty(),
+            name: z.string(),
+            contactNumber: z.string(),
+            occupation: z.string(),
           })
           .optional(),
         other: z
           .object({
-            name: z.string().nonempty(),
-            contactNumber: z.string().nonempty(),
-            occupation: z.string().nonempty(),
+            name: z.string(),
+            contactNumber: z.string(),
+            occupation: z.string(),
           })
           .optional(),
       }),
@@ -41,9 +42,9 @@ import { z } from 'zod'
 
     const localGuardianSchema = z.object({
       type: z.object({
-        name: z.string().nonempty(),
-        contactNumber: z.string().nonempty(),
-        occupation: z.string().nonempty(),
+        name: z.string(),
+        contactNumber: z.string(),
+        occupation: z.string(),
       }),
       required: z.literal(true),
     })
@@ -52,17 +53,17 @@ import { z } from 'zod'
       id: z.string().optional(),
       name: userNameSchema,
       gender: z.enum(['male', 'female', 'other']),
-      email: z.string().email().nonempty(),
-      dob: z.string().nonempty(),
+      email: z.string().email(),
+      dob: z.string(),
       profileImg: z.string().optional(),
-      contactNumber: z.string().nonempty(),
-      emergencyContact: z.string().nonempty(),
+      contactNumber: z.string(),
+      emergencyContact: z.string(),
       bloodGroup: z
         .enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'other'])
         .optional(),
       address: z.object({
-        permanent: z.string().nonempty(),
-        current: z.string().nonempty(),
+        permanent: z.string(),
+        current: z.string(),
       }),
       guardian: guardianSchema,
       localGuardian: localGuardianSchema,
